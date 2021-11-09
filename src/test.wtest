@@ -1,0 +1,47 @@
+import planta.*
+import parcela.*
+describe "Testeo" {
+
+	var menta = new Menta(altura = 1)
+	var mentita = new Menta(altura = 0.3)
+	var soja = new Soja(altura = 0.3)
+	var soja2 = new Soja(altura = 0.6, anioDeCreacion = 2009)
+	var soja3 = new Soja(altura = 2, anioDeCreacion = 2008)
+	var quinoa = new Quinoa(horasDeSolQueTolera = 12,anioDeCreacion = 2010)
+	var quinoa2 = new Quinoa(horasDeSolQueTolera = 9,anioDeCreacion = 2001)
+	var mentitaB = new HierbaBuena(altura = 1)	
+	
+	var parcelita = new ParcelaEcologica(largo = 1, ancho = 20, horasDeSol = 8)
+	
+	method inizialice(){
+		parcelita.plantarPlanta(soja)
+	}
+
+	test "Menta" {
+		assert.equals(3, menta.espacio())
+		assert.that(menta.daSemillas())
+	}
+
+	test"Menti" {
+		assert.equals(0.9, mentita.espacio())
+		assert.notThat(mentita.daSemillas())
+	}
+
+	test"Soja" {
+		assert.equals(6,soja.horasDeSolQueTolera())
+		assert.equals(7,soja2.horasDeSolQueTolera())
+		assert.equals(9,soja3.horasDeSolQueTolera())
+		assert.equals(1, soja3.espacio())	
+	}
+	test"Sojas que dan semilla"{
+		assert.that(soja3.daSemillas())		
+		assert.notThat(soja2.daSemillas())		
+	}
+	test"Quinoa que  da semilla"{
+		assert.that(quinoa.daSemillas())
+		assert.that(quinoa2.daSemillas())
+	}
+	test"tamanio"{
+		assert.equals(6, mentitaB.espacio())
+	}
+}

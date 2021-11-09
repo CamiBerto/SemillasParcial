@@ -1,0 +1,60 @@
+import planta.*
+import parcela.*
+import inta.*
+
+
+describe "Test parcelas" {
+	var parcelita = new ParcelaEcologica(largo = 1, ancho = 20, horasDeSol = 8)
+	
+	var soja = new Soja(altura = 2, anioDeCreacion = 2008)
+	var quinoa = new Quinoa(altura = 1,horasDeSolQueTolera = 12,anioDeCreacion = 2010)
+	var menta = new Menta(altura = 1)
+	var mentita = new HierbaBuena(altura = 1)
+	var sojita = new SojaTransgenica(altura = 1)
+	
+	
+	
+	method initialize() {
+		parcelita.plantarPlanta(soja)
+		parcelita.plantarPlanta(quinoa)
+		parcelita.plantarPlanta(menta)
+	}
+	
+	test "Plantas" {
+		assert.equals([soja, quinoa, menta], parcelita.plantas())
+	}
+	test "Cantidad maximas"{
+		assert.equals(4, parcelita.cantidadMaxima())
+	}
+	test"Agregando mas plantas"{
+		var menta2 = new Menta(altura = 1)
+		parcelita.plantarPlanta(menta2)
+		assert.equals([soja, quinoa, menta, menta2], parcelita.plantas())
+		var menta3 = new Menta(altura = 1)
+		assert.throwsException{
+			parcelita.plantarPlanta(menta3)
+		}
+	}
+	test" Parcela ideal"{
+		var parce = new ParcelaEcologica(largo = 2, ancho = 4, horasDeSol = 8)
+		var parce2 = new ParcelaEcologica(largo = 2, ancho = 3, horasDeSol = 9)
+		assert.that(mentita.esIdeal(parce))
+		assert.notThat(mentita.esIdeal(parce2))
+		
+		assert.notThat(soja.esIdeal(parce))
+		assert.that(soja.esIdeal(parce2))
+		
+		parce.plantarPlanta(menta)
+		parce.plantarPlanta(mentita)
+		
+		assert.that(quinoa.esIdeal(parce))
+		
+		parce2.plantarPlanta(soja)
+			
+		assert.notThat(quinoa.esIdeal(parce2))
+		
+		var parce3 =  new ParcelaEcologica(largo = 1, ancho = 0, horasDeSol = 10)
+		
+		assert.that(sojita.esIdeal(parce3))
+	}
+}

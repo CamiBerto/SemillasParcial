@@ -1,0 +1,104 @@
+import planta.*
+import parcela.*
+import inta.*
+
+
+describe "Test inta" {
+	var parcelita = new ParcelaEcologica(largo = 10, ancho = 20, horasDeSol = 9)
+	var parcelita2 = new ParcelaIndustrial(largo = 10, ancho = 20, horasDeSol = 8)
+	var parcelita3 = new ParcelaEcologica(largo = 10, ancho = 20, horasDeSol = 8)
+	
+	
+	var soja = new Soja(altura = 2, anioDeCreacion = 2008)
+	var soja2 = new Soja(altura = 2, anioDeCreacion = 2008)
+	var soja3 = new Soja(altura = 2, anioDeCreacion = 2008)
+	var soja4 = new Soja(altura = 2, anioDeCreacion = 2008)
+	var soja5 = new Soja(altura = 2, anioDeCreacion = 2008)
+	var soja6 = new Soja(altura = 2, anioDeCreacion = 2008)
+	var soja7 = new Soja(altura = 2, anioDeCreacion = 2008)
+	var soja8 = new Soja(altura = 2, anioDeCreacion = 2008)
+	var soja9 = new Soja(altura = 2, anioDeCreacion = 2008)
+	var soja10 = new Soja(altura = 2, anioDeCreacion = 2008)
+	var soja11 = new Soja(altura = 2, anioDeCreacion = 2008)
+	var soja12 = new Soja(altura = 2, anioDeCreacion = 2008)
+	var soja13 = new Soja(altura = 2, anioDeCreacion = 2008)
+	
+	method inizialice(){
+		parcelita.plantarPlanta(soja)
+		parcelita.plantarPlanta(soja2)
+		parcelita.plantarPlanta(soja3)
+		parcelita2.plantarPlanta(soja4)
+		parcelita2.plantarPlanta(soja5)
+		parcelita2.plantarPlanta(soja6)
+		parcelita3.plantarPlanta(soja7)
+		parcelita3.plantarPlanta(soja8)
+		parcelita3.plantarPlanta(soja9)
+		parcelita3.plantarPlanta(soja10)
+		
+		
+	}
+	test "inta" {
+		parcelita.plantarPlanta(soja)
+		parcelita.plantarPlanta(soja2)
+		parcelita.plantarPlanta(soja3)
+		parcelita2.plantarPlanta(soja4)
+		parcelita2.plantarPlanta(soja5)
+		parcelita2.plantarPlanta(soja6)
+		parcelita3.plantarPlanta(soja7)
+		parcelita3.plantarPlanta(soja8)
+		parcelita3.plantarPlanta(soja9)
+		parcelita3.plantarPlanta(soja10)
+		
+		inta.agregarParcela(parcelita)
+		inta.agregarParcela(parcelita2)
+		inta.agregarParcela(parcelita3)
+		
+		
+		assert.equals(3, inta.promedioDePlantas())
+	
+		
+		
+	}
+	
+
+	test"Me asocio bien"{
+		assert.that(soja.meAsocioBien(parcelita))
+		var parcelita4 = new ParcelaEcologica(largo = 10, ancho = 20, horasDeSol = 8)
+		parcelita4.plantarPlanta(soja)
+		assert.notThat(soja.meAsocioBien(parcelita4))
+	} 
+
+
+test " Parcela autosustentable"{
+	
+		parcelita.plantarPlanta(soja)
+		parcelita.plantarPlanta(soja2)
+		parcelita.plantarPlanta(soja3)
+		parcelita.plantarPlanta(soja4)
+		parcelita.plantarPlanta(soja5)
+		parcelita.plantarPlanta(soja6)
+		parcelita2.plantarPlanta(soja4)
+		parcelita2.plantarPlanta(soja5)
+		parcelita2.plantarPlanta(soja6)
+		parcelita3.plantarPlanta(soja7)
+		parcelita3.plantarPlanta(soja8)
+		parcelita3.plantarPlanta(soja9)
+		parcelita3.plantarPlanta(soja10)
+		inta.agregarParcela(parcelita)
+		inta.agregarParcela(parcelita2)
+		inta.agregarParcela(parcelita3)
+		
+		assert.equals(parcelita2,inta.parcelaAutosustentable())
+	
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
